@@ -2,8 +2,6 @@ const baseline = require('@mui/monorepo/.eslintrc');
 const path = require('path');
 const lodash = require('lodash');
 
-const ENABLE_REACT_COMPILER_PLUGIN = false;
-
 const ALLOWED_LODASH_METHODS = new Set(['throttle', 'debounce', 'set']);
 
 const noRestrictedImports = {
@@ -33,11 +31,7 @@ const noRestrictedImports = {
 
 module.exports = {
   ...baseline,
-  plugins: [
-    ...baseline.plugins,
-    ...(ENABLE_REACT_COMPILER_PLUGIN ? ['eslint-plugin-react-compiler'] : []),
-    'testing-library',
-  ],
+  plugins: [...baseline.plugins, 'eslint-plugin-react-compiler', 'testing-library'],
   settings: {
     'import/resolver': {
       webpack: {
@@ -72,7 +66,7 @@ module.exports = {
     // https://github.com/airbnb/javascript/blob/5155aa5fc1ea9bb2c6493a06ddbd5c7a05414c86/packages/eslint-config-airbnb/rules/react.js#L94
     'react/jsx-key': ['error', { checkKeyMustBeforeSpread: true, warnOnDuplicates: true }],
     // This got turned of in the mono-repo:
-    // See https://github.com/mui/mui-toolpad/pull/866#discussion_r957222171
+    // See https://github.com/mui/toolpad/pull/866#discussion_r957222171
     'react/no-unused-prop-types': [
       'error',
       {
@@ -101,7 +95,7 @@ module.exports = {
       },
     ],
     'material-ui/no-hardcoded-labels': 'off', // We are not really translating the docs/website anymore
-    ...(ENABLE_REACT_COMPILER_PLUGIN ? { 'react-compiler/react-compiler': 'error' } : {}),
+    'react-compiler/react-compiler': 'error',
   },
   overrides: [
     ...baseline.overrides,
@@ -196,6 +190,10 @@ module.exports = {
       rules: {
         'no-restricted-imports': ['error', noRestrictedImports],
       },
+    },
+    {
+      files: ['packages/toolpad-studio/src/**/*'],
+      rules: { 'react-compiler/react-compiler': 'off' },
     },
   ],
 };

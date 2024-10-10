@@ -8,9 +8,17 @@ components: AppProvider, DashboardLayout, Account
 
 <p class="description">The dashboard layout component provides a customizable out-of-the-box layout for a typical dashboard page.</p>
 
+:::info
+If this is your first time using Toolpad Core, it's recommended to read about the [basic concepts](/toolpad/core/introduction/base-concepts/) first.
+:::
+
 The `DashboardLayout` component is a quick, easy way to provide a standard full-screen layout with a header and sidebar to any dashboard page, as well as ready-to-use and easy to customize navigation and branding.
 
-Many features of this component are configurable through the [AppProvider](https://mui.com/toolpad/core/react-app-provider/) component that should wrap it.
+Many features of this component are configurable through the [AppProvider](https://mui.com/toolpad/core/react-app-provider/) component that must wrap it to provide the necessary context.
+
+:::info
+For more information on the `AppProvider` component that must wrap this `DashboardLayout`, please check out the [AppProvider](https://mui.com/toolpad/core/react-app-provider/) component documentation.
+:::
 
 ## Demo
 
@@ -87,13 +95,31 @@ Navigation links have an optional `action` prop to render any content on the rig
 Navigation links have an optional `pattern` prop to define a pattern to be matched for the item to be marked as selected.
 This feature is built on top of the [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) library. Some examples:
 
-- Constant path: `/orders`
-- Dynamic segment: `/orders/:segment`
-- Zero or more segments: `/orders{/:segment}*`
-- One or more segments: `/orders{/:segment}+`
-- Optional segment: `/orders{/:segment}+?`
+- Constant path: `orders`
+- Dynamic segment: `orders/:segment`
+- Optional segment: `orders{/:segment}?`
+- One or more segments: `orders{/:segment}+`
+- Zero or more segments: `orders{/:segment}*`
 
 {{"demo": "DashboardLayoutPattern.js", "height": 400, "iframe": true}}
+
+### Disable collapsible sidebar
+
+The layout sidebar is collapsible to a mini-drawer (with icons only) in desktop and tablet viewports. This behavior can be disabled with the `disableCollapsibleSidebar` prop.
+
+{{"demo": "DashboardLayoutNoMiniSidebar.js", "height": 400, "iframe": true}}
+
+### Full-size content
+
+The layout content can take up the full available area with styles such as `flex: 1` or `height: 100%`.
+
+{{"demo": "DashboardLayoutFullScreen.js", "height": 400, "iframe": true}}
+
+### Hide navigation
+
+The layout sidebar can be hidden if needed with the `hideNavigation` prop.
+
+{{"demo": "DashboardLayoutSidebarHidden.js", "height": 400, "iframe": true}}
 
 ## Account
 
@@ -108,6 +134,6 @@ The use of an `iframe` may cause some spacing issues in the following demo.
 ## Customization
 
 Some areas of the layout can be replaced with custom components by using the `slots` and `slotProps` props.
-For example, this allows you to add new items to the toolbar in the header, such as a search bar.
+For example, this allows you to add new items to the toolbar in the header, such as a search bar or a button.
 
 {{"demo": "DashboardLayoutSlots.js", "height": 400, "iframe": true}}

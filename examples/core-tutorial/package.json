@@ -12,12 +12,11 @@
     "react-dom": "^18",
     "next": "^14",
     "@toolpad/core": "latest",
-    "@mui/material": "^5",
-    "@mui/material-nextjs": "^5",
-    "@mui/icons-material": "^5",
+    "@mui/material": "^6",
+    "@mui/material-nextjs": "^6",
+    "@mui/icons-material": "^6",
     "@emotion/react": "^11",
-    "@emotion/styled": "^11",
-    "@emotion/cache": "^11"
+    "@emotion/styled": "^11"
   },
   "devDependencies": {
     "typescript": "^5",

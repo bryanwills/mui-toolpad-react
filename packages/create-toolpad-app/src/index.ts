@@ -12,12 +12,13 @@ import { satisfies } from 'semver';
 import { readJsonFile } from '@toolpad/utils/fs';
 import invariant from 'invariant';
 import { bashResolvePath } from '@toolpad/utils/cli';
-import generateProject, { GenerateProjectOptions } from './generateProject';
+import type { SupportedAuthProvider } from '@toolpad/core';
+import generateProject from './generateProject';
 import generateStudioProject from './generateStudioProject';
 import writeFiles from './writeFiles';
 import { downloadAndExtractExample } from './examples';
 import type { PackageJson } from './templates/packageType';
-import type { SupportedRouter, SupportedAuthProvider, PackageManager } from './types';
+import type { SupportedRouter, PackageManager, GenerateProjectOptions } from './types';
 
 /**
  * Find package.json of the create-toolpad-app package
@@ -129,8 +130,14 @@ const scaffoldStudioProject = async (absolutePath: string, installFlag: boolean)
   );
   // eslint-disable-next-line no-console
   console.log();
+  const options: GenerateProjectOptions = {
+    name: path.basename(absolutePath),
+    absolutePath,
+    projectType: 'studio',
+    packageManager,
+  };
+  const files = generateStudioProject(options);
 
-  const files = generateStudioProject(packageManager, path.basename(absolutePath));
   await writeFiles(absolutePath, files);
 
   if (installFlag) {
@@ -166,15 +173,17 @@ const scaffoldCoreProject = async (options: GenerateProjectOptions): Promise<voi
   const files = generateProject(options);
   await writeFiles(options.absolutePath, files);
 
-  // eslint-disable-next-line no-console
-  console.log(`${chalk.cyan('info')} - Installing dependencies`);
-  // eslint-disable-next-line no-console
-  console.log();
+  if (options.install) {
+    // eslint-disable-next-line no-console
+    console.log(`${chalk.cyan('info')} - Installing dependencies`);
+    // eslint-disable-next-line no-console
+    console.log();
 
-  await execa(packageManager, ['install'], { stdio: 'inherit', cwd: options.absolutePath });
+    await execa(packageManager, ['install'], { stdio: 'inherit', cwd: options.absolutePath });
 
-  // eslint-disable-next-line no-console
-  console.log();
+    // eslint-disable-next-line no-console
+    console.log();
+  }
   // eslint-disable-next-line no-console
   console.log(
     `${chalk.green('success')} - Created Toolpad Core project at ${chalk.cyan(options.absolutePath)}`,
@@ -235,13 +244,14 @@ const run = async () => {
     .option('example', {
       type: 'string',
       describe:
-        'The name of one of the available examples. See https://github.com/mui/mui-toolpad/tree/master/examples.',
+        'The name of one of the available examples. See https://github.com/mui/toolpad/tree/master/examples.',
     })
     .help().argv;
 
   const pathArg = args._?.[0] as string;
   const installFlag = args.install as boolean;
   const studioFlag = args.studio as boolean;
+  const example = args.example as string;
 
   if (pathArg) {
     const pathValidOrError = await validatePath(pathArg);
@@ -259,7 +269,9 @@ const run = async () => {
 
   if (!pathArg) {
     projectPath = await input({
-      message: 'Enter path for new project directory:',
+      message: example
+        ? `Enter path of directory to download example "${chalk.cyan(example)}" into`
+        : 'Enter path of directory to bootstrap new app',
       validate: validatePath,
       default: '.',
     });
@@ -268,8 +280,8 @@ const run = async () => {
   const absolutePath = bashResolvePath(projectPath);
 
   // If the user has provided an example, download and extract it
-  if (args.example) {
-    await downloadAndExtractExample(absolutePath, args.example);
+  if (example) {
+    await downloadAndExtractExample(absolutePath, example);
   }
 
   // If the studio flag is set, create a new project with Toolpad Studio
@@ -297,6 +309,24 @@ const run = async () => {
         choices: [
           { name: 'Google', value: 'google' },
           { name: 'GitHub', value: 'github' },
+          { name: 'GitLab', value: 'gitlab' },
+          { name: 'Twitter', value: 'twitter' },
+          { name: 'Facebook', value: 'facebook' },
+          { name: 'Cognito', value: 'cognito' },
+          { name: 'Microsoft Entra ID', value: 'microsoft-entra-id' },
+          { name: 'Apple', value: 'apple' },
+          { name: 'Instagram', value: 'instagram' },
+          { name: 'TikTok', value: 'tiktok' },
+          { name: 'LinkedIn', value: 'linkedin' },
+          { name: 'Slack', value: 'slack' },
+          { name: 'Spotify', value: 'spotify' },
+          { name: 'Twitch', value: 'twitch' },
+          { name: 'Discord', value: 'discord' },
+          { name: 'Line', value: 'line' },
+          { name: 'Auth0', value: 'auth0' },
+          { name: 'Keycloak', value: 'keycloak' },
+          { name: 'Okta', value: 'okta' },
+          { name: 'FusionAuth', value: 'fusionauth' },
         ],
       });
     }
@@ -306,6 +336,7 @@ const run = async () => {
       coreVersion: args.coreVersion,
       router: routerOption,
       auth: authFlag,
+      install: installFlag,
       authProviders: authProviderOptions,
     };
     await scaffoldCoreProject(options);
@@ -320,7 +351,7 @@ const run = async () => {
       ? `  cd ${path.relative(process.cwd(), absolutePath)}\n`
       : '';
 
-  const installInstruction = installFlag ? '' : `  ${packageManager} install\n`;
+  const installInstruction = example || !installFlag ? `  ${packageManager} install\n` : '';
 
   const message = `Run the following to get started: \n\n${chalk.magentaBright(
     `${changeDirectoryInstruction}${installInstruction}  ${packageManager}${

@@ -17,6 +17,14 @@ const pages: MuiPage[] = [
         title: 'Installation',
       },
       {
+        pathname: '/toolpad/core/introduction/base-concepts',
+        title: 'Base concepts',
+      },
+      {
+        pathname: '/toolpad/core/introduction/integration',
+        title: 'Integration',
+      },
+      {
         pathname: '/toolpad/core/introduction/tutorial',
         title: 'Tutorial',
       },
@@ -61,6 +69,11 @@ const pages: MuiPage[] = [
             pathname: '/toolpad/core/react-page-container',
             title: 'Page Container',
           },
+          {
+            pathname: '/toolpad/core/react-notification-center',
+            title: 'Notification Center',
+            planned: true,
+          },
         ],
       },
       {
@@ -74,6 +87,32 @@ const pages: MuiPage[] = [
           {
             pathname: '/toolpad/core/react-account',
             title: 'Account',
+          },
+          {
+            pathname: '/toolpad/core/react-sign-up-page',
+            title: 'Sign-up Page',
+            planned: true,
+          },
+          {
+            pathname: '/toolpad/core/react-rbac',
+            title: 'RBAC',
+            planned: true,
+          },
+        ],
+      },
+      {
+        pathname: '/toolpad/core/data-group',
+        subheader: 'Data',
+        children: [
+          {
+            pathname: '/toolpad/core/react-crud-page',
+            title: 'CRUD Page',
+            planned: true,
+          },
+          {
+            pathname: '/toolpad/core/react-stat-card',
+            title: 'Stats Card',
+            planned: true,
           },
         ],
       },

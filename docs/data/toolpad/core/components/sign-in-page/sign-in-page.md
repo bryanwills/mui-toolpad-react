@@ -8,13 +8,46 @@ components: SignInPage, Account, NotificationsProvider
 
 <p class="description">A customizable sign-in UI component that abstracts away the pain needed to wire together a secure authentication page for your application.</p>
 
+:::info
+If this is your first time using Toolpad Core, it's recommended to read about the [basic concepts](/toolpad/core/introduction/base-concepts/) first.
+:::
+
 The `SignInPage` component is a quick way to generate a ready-to-use authentication page with multiple OAuth providers, or a credentials form.
 
 ## OAuth
 
 The `SignInPage` component can be set up with an OAuth provider by passing in a list of providers in the `providers` prop, along with a `signIn` function that accepts the `provider` as a parameter.
 
-{{"demo": "OAuthSignInPage.js", "iframe": true}}
+{{"demo": "OAuthSignInPage.js", "iframe": true, "height": 500}}
+
+:::info
+
+The following providers are supported and maintained by default:
+
+- Google
+- GitHub
+- Facebook
+- Microsoft (Entra ID)
+- Apple
+- Auth0
+- AWS Cognito
+- GitLab
+- Instagram
+- LINE
+- Okta
+- FusionAuth
+- Twitter
+- TikTok
+- LinkedIn
+- Slack
+- Spotify
+- Twitch
+- Discord
+- Keycloak
+- Credentials (username/password)
+
+Find details on how to set up each provider in the [Auth.js documentation](https://authjs.dev/getting-started/authentication/oauth).
+:::
 
 ## Credentials
 
@@ -53,7 +86,7 @@ The component is composable with any authentication library you might want to us
 
 #### Setting up
 
-If you're using [`create-toolpad-app`](/toolpad/core/introduction/installation/), or the [Next.js app directory example](https://github.com/mui/mui-toolpad/tree/master/examples/core-auth-nextjs/), Auth.js is already installed. To proceed, add `AUTH_SECRET` to the environment variables by running:
+If you're using [`create-toolpad-app`](/toolpad/core/introduction/installation/), or the [Next.js app directory example](https://github.com/mui/toolpad/tree/master/examples/core-auth-nextjs/), Auth.js is already installed. To proceed, add `AUTH_SECRET` to the environment variables by running:
 
 ```bash
 npx auth secret
@@ -74,7 +107,7 @@ GITHUB_CLIENT_SECRET=<your-client-secret>
 
 ##### Server Configuration
 
-If you're using [`create-toolpad-app`](/toolpad/core/introduction/installation/), or the default [Next.js app directory example](https://github.com/mui/mui-toolpad/tree/master/examples/core-auth-nextjs/), this server configuration is already set up for you.
+If you're using [`create-toolpad-app`](/toolpad/core/introduction/installation/), or the default [Next.js app directory example](https://github.com/mui/toolpad/tree/master/examples/core-auth-nextjs/), this server configuration is already set up for you.
 
 Otherwise, follow the [custom sign in page instructions](https://authjs.dev/guides/pages/signin) to set up the server configuration.
 
@@ -144,11 +177,11 @@ export default function SignIn() {
 ```
 
 :::success
-If you're using the default [Next.js example](https://github.com/mui/mui-toolpad/tree/master/examples/core-auth-nextjs/), all of this is already configured for you. Otherwise, follow the [custom sign-in page instructions](https://authjs.dev/guides/pages/signin).
+If you're using the default [Next.js example](https://github.com/mui/toolpad/tree/master/examples/core-auth-nextjs/), all of this is already configured for you. Otherwise, follow the [custom sign-in page instructions](https://authjs.dev/guides/pages/signin).
 :::
 
 :::info
-If you're not on the Next Auth v5 version yet, see the [example with Next Auth v4](https://github.com/mui/mui-toolpad/tree/master/examples/core-auth-nextjs-pages-nextauth-4/) to get started.
+If you're not on the Next Auth v5 version yet, see the [example with Next Auth v4](https://github.com/mui/toolpad/tree/master/examples/core-auth-nextjs-pages-nextauth-4/) to get started.
 :::
 
 ## Customization
