@@ -32,7 +32,7 @@ You can find more detailed instructions and examples in the [CRUD component docu
 - Small adjustment to Data Grid selection in CRUD. (#4983) @apedroferreira
 - Use named imports for locales (#4945) @yuito-it
 
-### Core
+### Internal
 
 - Remove Toolpad Studio (#4987) @apedroferreira
 - Remove @vitejs/plugin-react as dependency (#4977) @Janpot
@@ -79,7 +79,7 @@ A big thanks to the 4 contributors who made this release possible. Here are some
 - Add CRUD to docs introduction page (#4851) @apedroferreira
 - Don't use `checkboxSelection` in CRUD examples (#4843) @bharatkashyap
 
-### Core
+### Internal
 
 - Update dependencies in `create-toolpad-app` and examples (#4863) @apedroferreira
 - Remove MUI X libraries as peer dependencies (#4854) @apedroferreira
@@ -134,7 +134,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 - Added links to sites (#4708) @Ocheretovich
 - Mention pnpm usage (#4793) @rkristelijn
 
-### Core
+### Internal
 
 - Move @toolpad/core to ESM (#4755) @Janpot
 - Add interpolation to translation keys (#4773) @bharatkashyap
@@ -160,7 +160,7 @@ Add new [Crud](https://mui.com/toolpad/core/react-crud/) component: this new com
 - Adjust CRUD types and documentation (#4751) @apedroferreira
 - Add "new" label to CRUD item (#4750) @apedroferreira
 
-### Core
+### Internal
 
 - Revert ESM update for toolpad-core (#4745) @Janpot
 - Remove email as a way to get support (#4716) @oliviertassinari
@@ -207,7 +207,7 @@ A big thanks to the 10 contributors who made this release possible. Here are som
 - Fix package.json pretty print (#4644) @rkristelijn
 - Fix .gitignore formatting (#4622) @rkristelijn
 
-### Core
+### Internal
 
 - Update package layout for ESM (#4686) @Janpot
 - Fix semver mismatches (#4600) @Janpot
@@ -267,7 +267,7 @@ _(Note the change in the path from `react-router-dom` to `react-router`)_
 - Fix correct use of Page Router and App Router (77a8b87) @oliviertassinari
 - Fix 301 links (#4558) @oliviertassinari
 
-### Core
+### Internal
 
 - Remove lockfile from example (#4577) @bharatkashyap
 - Fix CI failing due to Recharts console error (#4576) @bharatkashyap
@@ -318,7 +318,7 @@ A big thanks to the 6 contributors who made this release possible. Here are some
 - Update base-concepts.md (#4484) @prakhargupta1
 - Fix missed parenthesis (#4510) @bharatkashyap
 
-### Core
+### Internal
 
 - Remove/update offending deps (#4483) @bharatkashyap
 - Update @mui/monorepo (#4455) @oliviertassinari
@@ -368,7 +368,7 @@ A big thanks to the 5 contributors who made this release possible. Here are some
 - Correct version on themed example (#4405) @bharatkashyap
 - Fix 404 link (#4401) @oliviertassinari
 
-### Core
+### Internal
 
 - Update lockfile (#4386) @apedroferreira
 - Simplify OpenSSF badge (b61a32c) @oliviertassinari
@@ -423,7 +423,7 @@ A big thanks to the 5 contributors who made this release possible. Here are some
 - Minor changes (#4372) @prakhargupta1
 - Replace support link from Studio to Core in the GitHub Issue template (#4272) @prakhargupta1
 
-### Core
+### Internal
 
 - Fix Dependabot warning in Next.js example with passkey (#4371) @apedroferreira
 - Fix Vale errors (#4347) @oliviertassinari
@@ -475,7 +475,7 @@ A big thanks to the 8 contributors who made this release possible. Here are some
 - Update package screenshot in contributing.md (#4230) @prakhargupta1
 - Fix input.label in SlotsSignIn (#4157) @djedu28
 
-### Core
+### Internal
 
 - Update README.md @apedroferreira
 - Move vitest to dev dependency in `@toolpad/utils` (#4267) @Janpot
@@ -514,7 +514,7 @@ A big thanks to the 5 contributors who made this release possible. Here are some
 - add maxwidth section in the page container docs (#4103) @prakhargupta1
 - Fix typo from feedback (#4105) @Janpot
 
-### Core
+### Internal
 
 - Update/correct toolpad repository links in package.json (#4113) @Janpot
 - Update path-to-regexp to 6.3.0 (#4126) @Janpot
@@ -567,7 +567,7 @@ A big thanks to the 6 contributors who made this release possible. Here are some
 - Strengthen CSP (#4075) @oliviertassinari
 - Explain props of text-field component with demos (#4012) @prakhargupta1
 
-### Core
+### Internal
 
 - Update renovate.json @Janpot
 - Update package.json @Janpot
@@ -616,7 +616,7 @@ A big thanks to the 4 contributors who made this release possible. Here are some
 - Fix brand copy (#3938) @bharatkashyap
 - Improve hero (#3936) @bharatkashyap
 
-### Core
+### Internal
 
 - Update renovate.json @Janpot
 - Update renovate.json @Janpot
@@ -651,7 +651,7 @@ A big thanks to the 5 contributors who made this release possible. Here are some
 - Increase body-parser limit (#3903) @Janpot
 - Support Blob in js expressions (#3907) @Janpot
 
-### Core
+### Internal
 
 - Support `require` (#3908) @bharatkashyap
 - Port fixes from Material UI v6 migration branch (#3910) @Janpot
@@ -700,7 +700,7 @@ Please use the `--studio` flag to generate a Toolpad Studio project.
 - Improve Core tutorial (#3874) @bharatkashyap
 - Core docs edits (#3844) @prakhargupta1
 
-### Core
+### Internal
 
 - Upgrade `inquirer` to `@inquirer/prompts` (#3843) @bharatkashyap
 - Export `@mui/toolpad/internals` (#3873) @Janpot
@@ -733,7 +733,7 @@ Adds a new `PageContainer` component to wrap page content, add titles, breadcrum
 - Use the latest version for Toolpad Core (#3834) @bharatkashyap
 - Add Toolpad core landing page (#3690) @prakhargupta1
 
-### Core
+### Internal
 
 - OOM issues during build (#3825) @Janpot
 - Fix theming bugs (#3809) @apedroferreira
@@ -762,7 +762,7 @@ This release adds a theme switcher and a responsive drawer to the App Layout com
 - Add tabs example (#3803) @Janpot
 - Migrate Grid2 in the docs to fix landing page layout (#3790) @Janpot
 
-### Core
+### Internal
 
 - Remove lib dom from create-toolpad-app (#3796) @Janpot
 - Link GH issue for import/prefer-default-export @oliviertassinari
